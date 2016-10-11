@@ -18,7 +18,12 @@ import { HeroService } from './hero.service'
           </h2>
           <button (click)="gotoDetail()">View Details</button>
         </div>
-
+        <div>
+          <label>Hero name:</label> <input #heroName />
+          <button (click)="add(heroName.value); heroName.value=''">
+            Add
+          </button>
+        </div>
     `,
     styles: [`
           .selected {
@@ -80,6 +85,13 @@ export class HeroesComponent implements OnInit{
 
     getHeroes():void{
         this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    }
+
+    add(name: string):void{
+        name = name.trim();
+        if (!name) {return; }
+        this.heroService.create(name)
+            .then(hero => )
     }
 
     ngOnInit():void{
