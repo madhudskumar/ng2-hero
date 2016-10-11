@@ -9,6 +9,7 @@ import { HeroService } from './hero.service'
         <ul class="heroes">
             <li *ngFor="let hero of heroes" (click)="onselect(hero)" [class.selected]="hero === selectedHero">
                 <span class="badge">{{hero.id}}</span> {{hero.name}}
+                <button class="delete"  (click)="delete(hero); $event.stopPropagation()">x</button>
             </li>
         </ul>
         <my-hero-detail [hero]="selectedHero"></my-hero-detail>
@@ -26,6 +27,13 @@ import { HeroService } from './hero.service'
         </div>
     `,
     styles: [`
+          button.delete {
+              float:right;
+              margin-top: 2px;
+              margin-right: .8em;
+              background-color: gray !important;
+              color:white;
+          }
           .selected {
             background-color: #CFD8DC !important;
             color: white;
@@ -99,6 +107,17 @@ export class HeroesComponent implements OnInit{
 
     ngOnInit():void{
         this.getHeroes();
+    }
+
+    delete(hero: Hero): void{
+        this.heroService
+            .delete(hero.id)
+            .then(() => {
+                this.heroes = this.heroes.filter(h => h !== hero);
+                if(this.selectedHero === hero){
+                    this.selectedHero = null;
+                }
+            });
     }
 
     selectedHero: Hero;
