@@ -3,6 +3,7 @@ import { BrowserModule }   from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule} from "@angular/router";
+import './rxjs-extensions'
 
 //for inmemory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -13,6 +14,7 @@ import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './hero-detail.component'
 import { HeroesComponent } from './heroes.component'
 import { DashboardComponent } from './dashboard.component'
+import { HeroSearchComponent } from "./hero-search.component";
 
 @NgModule({
     imports: [
@@ -44,7 +46,8 @@ import { DashboardComponent } from './dashboard.component'
         AppComponent,
         HeroesComponent,
         HeroDetailComponent,
-        DashboardComponent
+        DashboardComponent,
+        HeroSearchComponent
     ],
     bootstrap: [
         AppComponent
