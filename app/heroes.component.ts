@@ -91,7 +91,10 @@ export class HeroesComponent implements OnInit{
         name = name.trim();
         if (!name) {return; }
         this.heroService.create(name)
-            .then(hero => )
+            .then(hero => {
+                this.heroes.push(hero);
+                this.selectedHero = null;
+            })
     }
 
     ngOnInit():void{
